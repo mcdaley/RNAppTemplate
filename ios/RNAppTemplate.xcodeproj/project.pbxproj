@@ -181,6 +181,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				608F30316A71E2680ED080F4 /* Pods */,
+				9285A603211C43B392923310 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -197,6 +198,14 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		9285A603211C43B392923310 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 

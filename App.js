@@ -14,8 +14,8 @@ import {
 }                               from 'react-native'
 import {
   Button,
+  Icon,
 }                               from 'react-native-elements'
-import Icon                     from 'react-native-vector-icons/FontAwesome'
 import { NavigationContainer }  from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
@@ -51,9 +51,25 @@ const App   = () => {
             headerLeft: () => (
               <Button title = 'Press Me' onPress = {() => alert('Clicked Me')} />
             ),
+            headerRight: () => (
+              <Icon
+                name            = 'ios-cog'
+                type            = 'ionicon'
+                color           = '#fff'
+                size            = {30}
+                containerStyle  = {{paddingRight: 20}}
+                onPress         = {() => alert('Kick the football')}
+              />
+            )
           }}
         />
-        <Stack.Screen name='Profile' component={ScreensSettingsProfile} />
+        <Stack.Screen 
+          name        = 'Profile' 
+          component   = {ScreensSettingsProfile}
+          options     = {{
+            headerBackTitle: 'Go Back',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
