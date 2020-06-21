@@ -11,70 +11,150 @@ import {
   View,
   Text,
   StatusBar,
-}                               from 'react-native'
+}                                   from 'react-native'
 import {
   Button,
   Icon,
-}                               from 'react-native-elements'
-import { NavigationContainer }  from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+}                                   from 'react-native-elements'
+import { NavigationContainer }      from '@react-navigation/native'
+import { createStackNavigator }     from '@react-navigation/stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import ScreensAppHome           from './src/screens/app/Home'
-import ScreensSettingsProfile   from './src/screens/settings/Profile'
+import ScreensAppHome               from './src/screens/app/Home'
+import ScreensAppInbox              from './src/screens/app/Inbox'
+import ScreensSettingsProfile       from './src/screens/settings/Profile'
+import ScreensSettingsSettings      from './src/screens/settings/Settings'
 
 // Configure the stack navigation
 const Stack = createStackNavigator()
 
-/**
- * 
- */
-const App   = () => {
+// Configure App stack navigation
+const    AppStack = createStackNavigator();
+function AppStackScreen() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator 
-        initialRouteName = 'Home'
-        screenOptions    = {{
-          title:  'Home',
-          headerStyle:  {
-            backgroundColor:  '#f4511e',
-          },
-          headerTintColor:  '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
+    <AppStack.Navigator
+      initialRouteName = 'Home'
+      screenOptions    = {{
+        headerStyle:  {
+          backgroundColor:  '#f4511e',
+        },
+        headerTintColor:  '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+    >
+      <AppStack.Screen 
+        name      = 'Home'  
+        component = {ScreensAppHome} 
+        options   = {{
+          headerRight: () => (
+            <Icon
+              name            = 'ios-cog'
+              type            = 'ionicon'
+              color           = '#fff'
+              size            = {30}
+              containerStyle  = {{paddingRight: 20}}
+            />
+          )
         }}
-      >
-        <Stack.Screen 
-          name        = 'Home' 
-          component   = {ScreensAppHome}
-          options     = {{
-            headerLeft: () => (
-              <Button title = 'Press Me' onPress = {() => alert('Clicked Me')} />
-            ),
+      />
+      <AppStack.Screen
+        name      = 'Inbox'
+        component = {ScreensAppInbox}
+        options   = {
+          ({route, navigation}) => ({ 
             headerRight: () => (
               <Icon
-                name            = 'ios-cog'
+                name            = 'ios-beer'
                 type            = 'ionicon'
                 color           = '#fff'
                 size            = {30}
                 containerStyle  = {{paddingRight: 20}}
-                onPress         = {() => alert('Kick the football')}
+                onPress         = {() => navigation.navigate('Home')}
               />
             )
-          }}
-        />
-        <Stack.Screen 
-          name        = 'Profile' 
-          component   = {ScreensSettingsProfile}
-          options     = {{
-            headerBackTitle: 'Go Back',
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          })
+        }
+      />
+    </AppStack.Navigator>
   );
-};
+}
 
+// Configure Settings stack navigation
+const    SettingsStack = createStackNavigator()
+function SettingsStackScreen() {
+  return (
+    <SettingsStack.Navigator
+      initialRouteName = 'Profile'
+      screenOptions    = {{
+        headerStyle:  {
+          backgroundColor:  '#f4511e',
+        },
+        headerTintColor:  '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+    >
+      <SettingsStack.Screen 
+        name      = 'Profile' 
+        component = {ScreensSettingsProfile} 
+      />
+      <SettingsStack.Screen 
+        name      = 'Settings'
+        component = {ScreensSettingsSettings}
+      />
+    </SettingsStack.Navigator>
+  )
+}
+
+const Tab = createBottomTabNavigator()
+
+/**
+ * 
+ */
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? 'ios-home'
+                : 'ios-home';
+            } else if (route.name === 'Settings') {
+              iconName = focused ? 'ios-list-box' : 'ios-list';
+            }
+
+            // You can return any component that you like here!
+            return (
+              <Icon 
+                name  = {iconName} 
+                type  = 'ionicon' 
+                size  = {size}
+                color = {color} 
+              />
+            )
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
+        }}
+      >
+        <Tab.Screen name="Home"     component={AppStackScreen} />
+        <Tab.Screen name="Settings" component={SettingsStackScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  )
+}
+
+
+// Styles
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: 'white',

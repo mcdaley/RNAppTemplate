@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// src/screens/settings/Profile.js
+// src/screens/settings/Settings.js
 //-----------------------------------------------------------------------------
 import React from 'react'
 import {
@@ -13,19 +13,19 @@ import {
 /**
  * 
  */
-const ScreensSettingsProfile = ({navigation}) => {
+const ScreensSettingsSettings = ({navigation}) => {
 
   return (
     <View>
-      <Text h2>Profile Screen</Text>
+      <Text h2>Settings Screen</Text>
       <Button 
-        title   = 'Go to App Settings' 
-        style   = {{padding: 10}}
-        onPress = {() => navigation.navigate('Settings')} 
+        title   = 'Go Back'
+        style   = {{padding: 10}} 
+        onPress = {()=> navigation.goBack()} 
       />
     </View>
   )
 }
 
-// Export the Profile screen
-export default ScreensSettingsProfile
+// Export the Settings screen
+export default ScreensSettingsSettings

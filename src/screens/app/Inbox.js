@@ -1,14 +1,12 @@
 //-----------------------------------------------------------------------------
-// src/screens/app/Home.js
+// src/screens/app/Inbox.js
 //-----------------------------------------------------------------------------
 import React      from 'react'
 import {
-  StatusBar,
   View,
 }                 from 'react-native'
 import {
   Button,
-  Header,
   Text,
 }                 from 'react-native-elements'
 
@@ -17,27 +15,32 @@ import styles     from './styles'
 /**
  * 
  */
-const ScreensAppHome = ({navigation}) => {
+const ScreensAppInbox = ({route, navigation}) => {
+  const { itemId, otherParam } = route.params
+
   return (
     <>
       <View>
         <Text h2>
-          Home Screen
+          Inbox Screen
         </Text>
-        <Button
-          title   = 'Inbox'
+        <Text>Item ID = {itemId}</Text>
+        <Text>Other Param = {otherParam}</Text>
+        <Button 
+          title   = 'Go Home'
           style   = {{padding: 10}}
-          onPress = {() => navigation.navigate('Inbox', {
-              itemId:     78,
-              otherParam: 'Bruce Smith'
-            })
-          }
+          onPress = {() => navigation.navigate('Home')} 
+        />
+        <Button
+          title   = 'Go Back'
+          style   = {{padding: 10}}
+          onPress = {() => navigation.goBack()}
         />
       </View>
     </>
   )
 }
 
-// Export the Home screen
-export default ScreensAppHome
+// Export the Inbox screen
+export default ScreensAppInbox
 
