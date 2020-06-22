@@ -1,6 +1,12 @@
 # React Native App Template
 The repository provides a template for quickly creating a new react native app. The easiest way to implement is to import the respository.
 
+## To Do
+### Figure out how to organize the code
+In React Navigation 4.x it was easier to organize the code because I could store the header information for each screen in the static navigation options. That was deprecated in 5.x. This will mostly be a problem when creating a dynamic header, such as a __Save__ link that only becomes active when a user types some information.
+
+One solution is to create the page using the <Header> component instead using the React Navigation headers. I quickly tried with React Native Elements, but the header was too large - NativeBase.io package seemed to work better.
+
 ## Installing
 
 ## Dependencies / Packages

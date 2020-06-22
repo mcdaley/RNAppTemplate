@@ -12,12 +12,17 @@ import {
   Text,
 }                 from 'react-native-elements'
 
+import authAPI    from '../../api/authAPI'
 import styles     from './styles'
 
 /**
  * 
  */
 const ScreensAppHome = ({navigation}) => {
+  const logout = async () => {
+    await authAPI.logout()
+  }
+
   return (
     <>
       <View>
@@ -28,10 +33,15 @@ const ScreensAppHome = ({navigation}) => {
           title   = 'Inbox'
           style   = {{padding: 10}}
           onPress = {() => navigation.navigate('Inbox', {
-              itemId:     78,
-              otherParam: 'Bruce Smith'
+              itemId:     34,
+              otherParam: 'Thurmon Thomas'
             })
           }
+        />
+        <Button
+          title   = 'Logout'
+          style   = {{padding: 10}}
+          onPress = {logout}
         />
       </View>
     </>

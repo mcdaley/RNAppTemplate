@@ -11,11 +11,18 @@ import {
   Text,
 }               from 'react-native-elements'
 
+import authAPI  from '../../api/authAPI'
+
 /**
  * 
  * @param {*} param0 
  */
 const ScreensAuthLogin = ({navigation}) => {
+  const signIn = async () => {
+    const user = await authAPI.login()
+    console.log(`[debug] Signed in user= `, user)
+  }
+
   return (
     <>
       <View>
@@ -23,8 +30,14 @@ const ScreensAuthLogin = ({navigation}) => {
           Login Screen
         </Text>
         <Button 
-          title   = 'Go Home' 
-          onPress = {() => navigation.navigate('Home')} 
+          title   = 'Sign In'
+          style   = {{padding: 5}}
+          onPress = {signIn} 
+        />
+        <Button 
+          title   = 'Sign up for an account'
+          style   = {{padding: 5}}
+          onPress = {() => navigation.navigate('Register')}
         />
       </View>
     </>
