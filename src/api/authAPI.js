@@ -39,8 +39,15 @@ const authAPI = {
    */
   logout() {
     return new Promise( async (resolve, reject) => {
-      const result = await AsyncStorage.removeItem('@userToken')
-      resolve(true)
+      try {
+        const result = await AsyncStorage.removeItem('@userToken')
+        console.log(`[debug] logout user, result= `, result)
+        resolve(true)
+      }
+      catch(error) {
+        console.log(`[error] Failed to logout the user, error= `, error)
+        resolve(false)
+      }
     })
   },
   /**
@@ -53,9 +60,11 @@ const authAPI = {
     return new Promise( async (resolve, reject) => {
       const result = await AsyncStorage.getItem('@userToken')
       if(result == null) {
+        console.log(`[debug] User is NOT logged in, result= `, result)
         resolve(false)
       }
       else {
+        console.log(`[debug] User is logged in, result= `, result)
         resolve(true)
       }
     })

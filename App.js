@@ -84,12 +84,20 @@ const App = () => {
     //* isSignedIn()
   }, [isLoading])
 
+  
   /**
-   * Render the screen
+   * Render the loading screen while the App is checking if the user is
+   * authenticated in the useEffect hook.
    */
-  return isLoading ? (
-    <ScreensAuthLoading />
-  ) : (
+  if(isLoading) {
+    return <ScreensAuthLoading />
+  }
+
+  /**
+   * Render the sign-in screen if the user is not authenticated, otherwise
+   * render the App home screen.
+   */
+  return (
     <NavigationContainer>
       {isLoggedIn ? (
         <Tab.Navigator

@@ -19,7 +19,13 @@ import styles     from './styles'
  */
 const ScreensAppHome = ({navigation}) => {
   const logout = async () => {
-    await authAPI.logout()
+    try {
+      await authAPI.logout()
+      console.log(`[info] Logged out the user`)
+    }
+    catch(error) {
+      console.log(`[error] Failed to logout, error= `, error)
+    }
   }
 
   return (
