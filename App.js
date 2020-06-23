@@ -16,17 +16,16 @@ import {
   Button,
   Icon,
 }                                       from 'react-native-elements'
-import { NavigationContainer, StackActions }          from '@react-navigation/native'
+import { NavigationContainer }          from '@react-navigation/native'
 import { createStackNavigator }         from '@react-navigation/stack'
 import { createBottomTabNavigator }     from '@react-navigation/bottom-tabs'
 
 import ScreensAuthLoading               from './src/screens/auth/Loading'
 import ScreensAuthLogin                 from './src/screens/auth/Login'
 import ScreensAuthRegister              from './src/screens/auth/Register'
-import ScreensAppHome                   from './src/screens/app/Home'
-import ScreensAppInbox                  from './src/screens/app/Inbox'
-import ScreensSettingsProfile           from './src/screens/settings/Profile'
-import ScreensSettingsSettings          from './src/screens/settings/Settings'
+
+import AppScreens                       from './src/screens/app/Screens'
+import SettingsScreens                  from './src/screens/settings/Screens'
 
 import authAPI                          from './src/api/authAPI'
 
@@ -56,87 +55,6 @@ function  AuthStackScreens() {
       />
     </AuthStack.Navigator>
 
-  )
-}
-
-// Configure App stack navigation
-const    AppStack = createStackNavigator();
-function AppStackScreen() {
-  return (
-    <AppStack.Navigator
-      initialRouteName = 'Home'
-      screenOptions    = {{
-        headerStyle:  {
-          backgroundColor:  '#f4511e',
-        },
-        headerTintColor:  '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
-    >
-      <AppStack.Screen 
-        name      = 'Home'  
-        component = {ScreensAppHome} 
-        options   = {{
-          headerRight: () => (
-            <Icon
-              name            = 'ios-cog'
-              type            = 'ionicon'
-              color           = '#fff'
-              size            = {30}
-              containerStyle  = {{paddingRight: 20}}
-            />
-          )
-        }}
-      />
-      <AppStack.Screen
-        name      = 'Inbox'
-        component = {ScreensAppInbox}
-        options   = {
-          ({route, navigation}) => ({ 
-            headerRight: () => (
-              <Icon
-                name            = 'ios-beer'
-                type            = 'ionicon'
-                color           = '#fff'
-                size            = {30}
-                containerStyle  = {{paddingRight: 20}}
-                onPress         = {() => navigation.navigate('Home')}
-              />
-            )
-          })
-        }
-      />
-    </AppStack.Navigator>
-  )
-}
-
-// Settings stack navigation
-const    SettingsStack = createStackNavigator()
-function SettingsStackScreen() {
-  return (
-    <SettingsStack.Navigator
-      initialRouteName = 'Profile'
-      screenOptions    = {{
-        headerStyle:  {
-          backgroundColor:  '#f4511e',
-        },
-        headerTintColor:  '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
-    >
-      <SettingsStack.Screen 
-        name      = 'Profile' 
-        component = {ScreensSettingsProfile} 
-      />
-      <SettingsStack.Screen 
-        name      = 'Settings'
-        component = {ScreensSettingsSettings}
-      />
-    </SettingsStack.Navigator>
   )
 }
 
@@ -183,7 +101,8 @@ const App = () => {
                 iconName = focused
                   ? 'ios-home'
                   : 'ios-home';
-              } else if (route.name === 'Settings') {
+              } 
+              else if (route.name === 'Settings') {
                 iconName = focused ? 'ios-list-box' : 'ios-list';
               }
   
@@ -203,8 +122,8 @@ const App = () => {
             inactiveTintColor: 'gray',
           }}
         >
-          <Tab.Screen name="Home"     component={AppStackScreen} />
-          <Tab.Screen name="Settings" component={SettingsStackScreen} />
+          <Tab.Screen name="Home"     component={AppScreens} />
+          <Tab.Screen name="Settings" component={SettingsScreens} />
         </Tab.Navigator>
         ) : (
           AuthStackScreens()

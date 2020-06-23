@@ -8,7 +8,6 @@ import {
 }                 from 'react-native'
 import {
   Button,
-  Header,
   Text,
 }                 from 'react-native-elements'
 
