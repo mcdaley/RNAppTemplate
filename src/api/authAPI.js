@@ -16,7 +16,8 @@ const authAPI = {
    * 
    * NOTE:
    * Current version doesn't check the email and password and just sets the
-   * userToken.
+   * userToken. When implementing a real version the API will need to call
+   * in the Apps login API.
    * 
    * @param {String} email 
    * @param {String} password
@@ -24,9 +25,11 @@ const authAPI = {
   login(email = 'mlevy@bills.com', password) {
     return new Promise( async (resolve, reject) => {
       try {
-        const result = await AsyncStorage.setItem('@userToken', email)
-        const user   = { email: email}
-        resolve(user)
+        // mockResult would be result of login api call.
+        const mockUser = {email: email, token: 'xxx'}
+        await setJSONValue('@userToken', mockUser)
+        
+        resolve(mockUser)
       }
       catch(error) {
         reject(error)
@@ -41,7 +44,7 @@ const authAPI = {
     return new Promise( async (resolve, reject) => {
       try {
         const result = await AsyncStorage.removeItem('@userToken')
-        console.log(`[debug] logout user, result= `, result)
+        //* console.log(`[debug] logout user, result= `, result)
         resolve(true)
       }
       catch(error) {
@@ -54,21 +57,69 @@ const authAPI = {
    * Checks to see if the user is logged into the app. Returns true if the
    * user is logged in, otherwise it returns false.
    * 
-   * @returns {Boolean} True is logged-in, otherwise false.
+   * @returns {Object} Current user w/ email and token.
    */
   isLoggedIn() {
     return new Promise( async (resolve, reject) => {
-      const result = await AsyncStorage.getItem('@userToken')
-      if(result == null) {
-        console.log(`[debug] User is NOT logged in, result= `, result)
-        resolve(false)
-      }
+
+      const user = await getJSONValue('@userToken')
+      if(user) {
+        //* console.log(`[debug] User is logged in, user= `, user)
+        resolve(user)
+      } 
       else {
-        console.log(`[debug] User is logged in, result= `, result)
-        resolve(true)
-      }
+        //* console.log(`[debug] User is NOT logged in, user= `, user)
+        resolve(null)
+      } 
     })
   }
+}
+
+/**
+ * Helper function to store an object in local storage. It converts the
+ * object to a JSON string and stores the string in the local storage. When
+ * retrieving the object, you need to convert the JSON string to an object
+ * using JSON.parse.
+ * @param {String} key 
+ * @param {Object} value 
+ */
+const setJSONValue = (key, value) => {
+  return new Promise( async (resolve, reject) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem(key, jsonValue)
+
+      resolve(true)
+    }
+    catch(err) {
+      console.log(`[error] Failed to set ${key} in AsyncStorage, err= `, err)
+      reject(err)
+    }
+  })
+}
+
+/**
+ * Get an object from the AsyncStorage that is encoded as a JSON string for
+ * a key. Converts the JSON string to an object and returns the object.
+ * @param   {String} key 
+ * @returns {Object} Value stored in local-storage for the key.
+ */
+const getJSONValue = (key) => {
+  return new Promise( async (resolve, reject) => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(key)
+      if(jsonValue) {
+        const value = JSON.parse(jsonValue)
+        resolve(value)
+      }
+      else {
+        resolve(null)
+      }
+    }
+    catch(err) {
+      reject(err)
+    }
+  })
 }
 
 // Export the authAPI

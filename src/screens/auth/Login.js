@@ -1,27 +1,23 @@
 //-----------------------------------------------------------------------------
 // src/screens/auth/Login.js
 //-----------------------------------------------------------------------------
-import React    from 'react'
+import React            from 'react'
 import {
   View,
-}               from 'react-native'
+}                       from 'react-native'
 import {
   Button,
-  Header,
   Text,
-}               from 'react-native-elements'
+}                       from 'react-native-elements'
 
-import authAPI  from '../../api/authAPI'
+import { AuthContext }  from '../../../App'
 
 /**
  * 
  * @param {*} param0 
  */
 const ScreensAuthLogin = ({navigation}) => {
-  const signIn = async () => {
-    const user = await authAPI.login()
-    console.log(`[debug] Signed in user= `, user)
-  }
+  const authContext = React.useContext(AuthContext)
 
   return (
     <>
@@ -32,7 +28,7 @@ const ScreensAuthLogin = ({navigation}) => {
         <Button 
           title   = 'Sign In'
           style   = {{padding: 5}}
-          onPress = {signIn} 
+          onPress = {() => authContext.signIn('marv@bills.com', 'password')} 
         />
         <Button 
           title   = 'Sign up for an account'
