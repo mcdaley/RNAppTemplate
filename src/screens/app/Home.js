@@ -1,23 +1,26 @@
 //-----------------------------------------------------------------------------
 // src/screens/app/Home.js
 //-----------------------------------------------------------------------------
-import React      from 'react'
+import React            from 'react'
 import {
   StatusBar,
   View,
-}                 from 'react-native'
+}                       from 'react-native'
 import {
   Button,
   Text,
-}                 from 'react-native-elements'
+}                       from 'react-native-elements'
 
-import authAPI    from '../../api/authAPI'
-import styles     from './styles'
+import { AuthContext }  from '../context/AuthContext'
+import authAPI          from '../../api/authAPI'
+import styles           from './styles'
 
 /**
  * 
  */
 const ScreensAppHome = ({navigation}) => {
+  const authContext = React.useContext(AuthContext)
+
   const logout = async () => {
     try {
       await authAPI.logout()
@@ -46,7 +49,7 @@ const ScreensAppHome = ({navigation}) => {
         <Button
           title   = 'Logout'
           style   = {{padding: 10}}
-          onPress = {logout}
+          onPress = {() => authContext.signOut()}
         />
       </View>
     </>

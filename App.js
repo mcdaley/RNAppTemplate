@@ -27,6 +27,7 @@ import ScreensAuthRegister              from './src/screens/auth/Register'
 import AppScreens                       from './src/screens/app/Screens'
 import SettingsScreens                  from './src/screens/settings/Screens'
 
+import { AuthContext }                  from './src/screens/context/AuthContext'
 import authAPI                          from './src/api/authAPI'
 
 // Authentication stack navigation
@@ -61,8 +62,6 @@ function  AuthStackScreens() {
 const Tab = createBottomTabNavigator()
 
 // Setup authentication logic
-export const AuthContext  = React.createContext()
-
 let   initialState = {
   isLoading:    true,
   isLoggedIn:   false,
@@ -139,6 +138,17 @@ const App = () => {
         }
         catch(error) {
           dispatch({ type: 'ERROR', payload: error})
+        }
+      },
+      signOut: async () => {
+        try {
+          //* console.log(`[debug] Sign out the user`)
+          await authAPI.logout()
+          dispatch({ type: 'SIGN_OUT' })
+        }
+        catch(error) {
+          //* console.log(`[error] Failed to sign out user, error= `, error)
+          dispatch({ type: 'ERROR', payload: error })
         }
       }
     }),

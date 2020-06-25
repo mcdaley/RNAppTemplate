@@ -10,7 +10,7 @@ import {
   Text,
 }                       from 'react-native-elements'
 
-import { AuthContext }  from '../../../App'
+import { AuthContext }  from '../context/AuthContext'
 
 /**
  * 
