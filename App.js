@@ -82,6 +82,14 @@ const reducer = (state, action) => {
         token:      getPayload(action.payload, 'token'),
         isLoading:  false,
       }
+    case 'SIGN_UP':
+      console.log(`[debug] reducer SIGN_UP, action= `, action)
+      return {
+        ...state,
+        isLoading:  false,
+        isLoggedIn: getPayload(action.payload, 'email'),
+        token:      getPayload(action.payload, 'token'),
+      }
     case 'SIGN_IN':
       console.log(`[debug] reducer SIGN_IN, action= `, action)
       return {
@@ -138,6 +146,16 @@ const App = () => {
         }
         catch(error) {
           dispatch({ type: 'ERROR', payload: error})
+        }
+      },
+      signUp: async (email, password) => {
+        try {
+          const user = await authAPI.register(email, password)
+          dispatch({ type: 'SIGN_UP', payload: user})
+        }
+        catch(error) {
+          console.log(`[error] Failed to sign up user=[${email}], error= `, error)
+          dispatch({ type: 'ERROR', payload: error })
         }
       },
       signOut: async () => {

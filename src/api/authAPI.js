@@ -7,8 +7,31 @@ import AsyncStorage from '@react-native-community/async-storage'
  * User authentication API
  */
 const authAPI = {
+  /**
+   * Sign up a user for a new account. It will call the API to register the
+   * account and then set the user token in local-storage. If it fails then
+   * it returns an error.
+   * 
+   * NOTE:
+   * This is just a dummy implementation for rapid prototyping.
+   * 
+   * @param   {String}  email 
+   * @param   {String}  password
+   * @returns {Promise} Returns user if successful, otherwise returns error
+   */
   register(email, password) {
-    console.log(`[debug]: authAPI.register not implemented yet`)
+    return new Promise( async (resolve, reject) => {
+      try {
+        // mockResult would be result of login api call.
+        const mockUser = {email: email, token: 'xxx'}
+        await setJSONValue('@userToken', mockUser)
+        
+        resolve(mockUser)
+      }
+      catch(error) {
+        reject(error)
+      }
+    })
   },
   /**
    * Attempts to sign in the user. If successful then it creates a user token
@@ -19,8 +42,9 @@ const authAPI = {
    * userToken. When implementing a real version the API will need to call
    * in the Apps login API.
    * 
-   * @param {String} email 
-   * @param {String} password
+   * @param   {String}  email 
+   * @param   {String}  password
+   * @returns {Promise} User is login was successful, otherwise the error
    */
   login(email = 'mlevy@bills.com', password) {
     return new Promise( async (resolve, reject) => {

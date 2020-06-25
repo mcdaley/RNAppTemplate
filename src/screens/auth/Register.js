@@ -1,27 +1,27 @@
 //-----------------------------------------------------------------------------
 // src/screens/auth/Register.js
 //-----------------------------------------------------------------------------
-import React    from 'react'
+import React            from 'react'
 import {
   View,
-}               from 'react-native'
+}                       from 'react-native'
 import {
   Button,
-  Header,
   Text,
-}               from 'react-native-elements'
+}                       from 'react-native-elements'
 
-import authAPI  from '../../api/authAPI'
+import { AuthContext }  from '../context/AuthContext'
 
 /**
- * 
+ * Account registration screen.
  * @param {*} param0 
  */
 const ScreensAuthRegister = ({navigation}) => {
-  const signUp = () => {
-    authAPI.login()
-  }
+  const authContext = React.useContext(AuthContext)
 
+  /**
+   * Render the account sign up screen.
+   */
   return (
     <>
       <View>
@@ -31,7 +31,7 @@ const ScreensAuthRegister = ({navigation}) => {
         <Button 
           title   = 'Sign Up'
           style   = {{padding: 10}}
-          onPress = {signUp} 
+          onPress = {() => authContext.signUp('marv@bills.com', 'password')} 
         />
         <Button 
           title   = 'Sign into your account'
