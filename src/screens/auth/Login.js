@@ -36,8 +36,12 @@ const schema = yup.object().shape({
  * @param {*} param0 
  */
 const ScreensAuthLogin = ({navigation}) => {
-  const { control, handleSubmit, errors } = useForm({resolver: yupResolver(schema)})
+  // Setup react-hook-form
+  const { control, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema)
+  })
 
+  // Authentication context
   const authContext = React.useContext(AuthContext)
 
   /**
