@@ -90,7 +90,7 @@ const ScreensAuthRegister = ({navigation}) => {
                 autoCapitalize    = 'none'
                 autoCompleteType  = 'email'
                 errorStyle        = {{ color: 'red' }}
-                errorMessage      = {errors.email ? errors.email.message : null}
+                errorMessage      = {errors.email && errors.email.message}
               />
             )}
           />
@@ -119,7 +119,7 @@ const ScreensAuthRegister = ({navigation}) => {
                 autoCapitalize    = 'none'
                 autoCompleteType  = 'password'
                 errorStyle        = {{ color: 'red' }}
-                errorMessage      = {errors.password ? errors.password.message : null}
+                errorMessage      = {errors.password && errors.password.message}
               />
             )}
           />
@@ -148,7 +148,7 @@ const ScreensAuthRegister = ({navigation}) => {
                 autoCapitalize    = 'none'
                 autoCompleteType  = 'password'
                 errorStyle        = {{ color: 'red' }}
-                errorMessage      = {errors.confirmPassword ? errors.confirmPassword.message : null}
+                errorMessage      = {errors.confirmPassword && errors.confirmPassword.message}
               />
             )}
           />
@@ -164,6 +164,7 @@ const ScreensAuthRegister = ({navigation}) => {
         {/* Link back to sign-in */}
         <Button 
           title   = 'Sign into your account'
+          type    = 'clear'
           style   = {{padding: 10}}
           onPress = {() => navigation.navigate('Login')}
         />

@@ -83,7 +83,7 @@ const ScreensAuthLogin = ({navigation}) => {
                 autoCapitalize    = 'none'
                 autoCompleteType  = 'email'
                 errorStyle        = {{ color: 'red' }}
-                errorMessage      = {errors.email ? errors.email.message : null}
+                errorMessage      = {errors.email && errors.email.message}
               />
             )}
             name          = 'email'
@@ -111,7 +111,7 @@ const ScreensAuthLogin = ({navigation}) => {
                 autoCapitalize    = 'none'
                 autoCompleteType  = 'password'
                 errorStyle        = {{ color: 'red' }}
-                errorMessage      = {errors.password ? errors.password.message : null}
+                errorMessage      = {errors.password && errors.password.message}
               />
             )}
             name          = 'password'
