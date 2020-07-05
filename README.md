@@ -5,9 +5,9 @@ The repository provides a template for quickly creating a new react native app. 
 ### Refactor the Login & Register screens
 Refactor the Login & Register screens as right now there is a lot of duplicated
 code. Tasks should be:
-1.) Create SignIn and SignUp forms
-2.) Create Input components for email, password, & confirmPassword so that the
-    forms created above look cleaner.
+[x] 1.) Create SignIn and SignUp forms
+[n] 2.) Create Input components for email, password, & confirmPassword so that the
+        forms created above look cleaner.
 
 ### Global Styles
 Configure the global styles for the App the same way that I did for HoneyDone by:

@@ -12,23 +12,17 @@ import {
 }                       from 'react-native-elements'
 
 import { AuthContext }  from '../context/AuthContext'
-import authAPI          from '../../api/authAPI'
 import styles           from './styles'
 
 /**
  * 
  */
 const ScreensAppHome = ({navigation}) => {
-  const authContext = React.useContext(AuthContext)
+  const authContext       = React.useContext(AuthContext)
+  const [error, setError] = React.useState(null)
 
-  const logout = async () => {
-    try {
-      await authAPI.logout()
-      console.log(`[info] Logged out the user`)
-    }
-    catch(error) {
-      console.log(`[error] Failed to logout, error= `, error)
-    }
+  const handleError = (err) => {
+    setError(err)
   }
 
   return (
@@ -49,7 +43,7 @@ const ScreensAppHome = ({navigation}) => {
         <Button
           title   = 'Logout'
           style   = {{padding: 10}}
-          onPress = {() => authContext.signOut()}
+          onPress = {() => authContext.signOut(handleError)}
         />
       </View>
     </>

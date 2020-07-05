@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 /**
  * User authentication API
  */
-const authAPI = {
+const authAPI = {  
   /**
    * Sign up a user for a new account. It will call the API to register the
    * account and then set the user token in local-storage. If it fails then

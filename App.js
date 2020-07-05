@@ -66,6 +66,7 @@ let   initialState = {
   isLoading:    true,
   isLoggedIn:   false,
   token:        null,
+  error:        null,
 }
 
 const reducer = (state, action) => {
@@ -104,11 +105,6 @@ const reducer = (state, action) => {
         isLoggedIn: false,
         token:      null,
       }
-    case 'ERROR':
-      return {
-        ...state,
-        error:      action.payload.error
-      }
     default:
       return state
   }
@@ -138,35 +134,43 @@ const App = () => {
  
   const authContext = React.useMemo(
     () => ({
-      signIn: async (email, password) => {
+      testError: async (onError) => {
         try {
-          console.log(`[debug] authContext signIn, email= `, email)
-          const user = await authAPI.login(email, password)
-          dispatch({ type: 'SIGN_IN', payload: user })
+          await authAPI.testError()
         }
-        catch(error) {
-          dispatch({ type: 'ERROR', payload: error})
+        catch(err) {
+          console.log(`[error] Testing error= `, err)          
+          onError(err)
         }
       },
-      signUp: async (email, password) => {
+      signIn: async (email, password, onError) => {
+        try {
+          const user = await authAPI.login(email, password)
+          dispatch({ type: 'SIGN_IN', payload: user})
+        }
+        catch(err) {
+          console.log(`[error] Failed to sign-in user=[${email}], error= `, err)
+          onError(err)
+        }
+      },
+      signUp: async (email, password, onError) => {
         try {
           const user = await authAPI.register(email, password)
           dispatch({ type: 'SIGN_UP', payload: user})
         }
-        catch(error) {
-          console.log(`[error] Failed to sign up user=[${email}], error= `, error)
-          dispatch({ type: 'ERROR', payload: error })
+        catch(err) {
+          console.log(`[error] Failed to sign up user=[${email}], error= `, err)
+          onError(err)
         }
       },
-      signOut: async () => {
+      signOut: async (onError) => {
         try {
-          //* console.log(`[debug] Sign out the user`)
           await authAPI.logout()
           dispatch({ type: 'SIGN_OUT' })
         }
-        catch(error) {
-          //* console.log(`[error] Failed to sign out user, error= `, error)
-          dispatch({ type: 'ERROR', payload: error })
+        catch(err) {
+          console.log(`[error] Failed to sign out user, error= `, err)
+          onError(err)
         }
       }
     }),
