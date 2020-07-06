@@ -10,6 +10,7 @@ import {
   Button,
   Text,
 }                       from 'react-native-elements'
+import PropTypes        from 'prop-types'
 
 import { AuthContext }  from '../context/AuthContext'
 import styles           from './styles'
@@ -48,6 +49,11 @@ const ScreensAppHome = ({navigation}) => {
       </View>
     </>
   )
+}
+
+// ScreensAppHome PropTypes
+ScreensAppHome.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 // Export the Home screen

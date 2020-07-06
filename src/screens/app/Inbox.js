@@ -9,6 +9,7 @@ import {
   Button,
   Text,
 }                 from 'react-native-elements'
+import PropTypes  from 'prop-types'
 
 import styles     from './styles'
 
@@ -39,6 +40,12 @@ const ScreensAppInbox = ({route, navigation}) => {
       </View>
     </>
   )
+}
+
+// ScreensAppInbox PropTypes
+ScreensAppInbox.propTypes = {
+  route:      PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
 }
 
 // Export the Inbox screen

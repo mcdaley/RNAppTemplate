@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // src/screens/settings/Settings.js
 //-----------------------------------------------------------------------------
-import React from 'react'
+import React      from 'react'
 import {
   View,
 }                 from 'react-native'
@@ -9,6 +9,7 @@ import {
   Button,
   Text,
 }                 from 'react-native-elements'
+import PropTypes  from 'prop-types'
 
 /**
  * 
@@ -25,6 +26,11 @@ const ScreensSettingsSettings = ({navigation}) => {
       />
     </View>
   )
+}
+
+// ScreensSettingsSettings PropTypes
+ScreensSettingsSettings.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 // Export the Settings screen

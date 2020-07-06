@@ -15,6 +15,8 @@ import {
   Icon,
   Text,
 }                               from 'react-native-elements'
+import PropTypes                from 'prop-types'
+
 import styles                   from './styles'
 
 // Define sign-up form validation schema
@@ -158,6 +160,11 @@ const AuthSignUpForm = (props) => {
       </View>
     </>
   )
+}
+
+// AuthSignUpForm PropTypes
+AuthSignUpForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }
 
 // Export the sign-up form

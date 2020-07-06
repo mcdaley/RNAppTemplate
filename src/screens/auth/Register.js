@@ -5,6 +5,7 @@ import React                    from 'react'
 import {
   View,
 }                               from 'react-native'
+import PropTypes                from 'prop-types'
 
 import { AuthContext }          from '../context/AuthContext'
 import AuthSignUpForm           from '../../components/auth/SignUpForm'
@@ -66,6 +67,11 @@ const ScreensAuthRegister = ({navigation}) => {
       </View>
     </>
   )
+}
+
+// ScreensAuthRegister PropTypes
+ScreensAuthRegister.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 // Export the user registration screen

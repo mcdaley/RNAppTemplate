@@ -14,6 +14,8 @@ import {
   Icon,
   Input,
 }                               from 'react-native-elements'
+import PropTypes                from 'prop-types'
+
 import styles                   from './styles'
 
 // Define login form validation schema
@@ -123,5 +125,10 @@ const AuthLoginForm = (props) => {
   )
 }
 
-// Export the login form
+// AuthLoginForm PropTypes
+AuthLoginForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+}
+
+// Export the Login Form
 export default AuthLoginForm

@@ -5,6 +5,7 @@ import React      from 'react'
 import {
   Button,
 }                 from 'react-native-elements'
+import PropTypes  from 'prop-types'
 
 import styles     from './styles'
 
@@ -27,6 +28,11 @@ const UIButtonLink = ({title, onPress}) => {
       onPress         = {handlePress}
     />
   )
+}
+
+// UIButtonLink PropTypes
+UIButtonLink.propTypes = {
+  title:  PropTypes.string.isRequired,
 }
 
 // Export the link

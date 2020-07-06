@@ -9,6 +9,7 @@ import {
   Button,
   Text,
 }                 from 'react-native-elements'
+import PropTypes  from 'prop-types'
 
 /**
  * 
@@ -25,6 +26,11 @@ const ScreensSettingsProfile = ({navigation}) => {
       />
     </View>
   )
+}
+
+// ScreensSettingsProfile PropTypes
+ScreensSettingsProfile.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 // Export the Profile screen

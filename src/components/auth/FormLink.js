@@ -8,6 +8,7 @@ import {
 import {
   Text,
 }                     from 'react-native-elements'
+import PropTypes      from 'prop-types'
 
 import UIButtonLink   from '../ui/ButtonLink'
 import styles         from './styles'
@@ -31,6 +32,14 @@ const AuthFormLink = ({message, title, screen, navigation}) => (
     />
   </View> 
 )
+
+// AuthFormLink PropTypes
+AuthFormLink.propTypes = {
+  message:    PropTypes.string.isRequired,
+  title:      PropTypes.string.isRequired,
+  screen:     PropTypes.string.isRequired,
+  navigation: PropTypes.object.isRequired,
+}
 
 // Export the sign-in/sign-up redirect link
 export default AuthFormLink

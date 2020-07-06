@@ -11,10 +11,10 @@ code. Tasks should be:
 
 ### Global Styles
 Configure the global styles for the App the same way that I did for HoneyDone by:
-1.) Define brand variables
-2.) Apply brand variables to the app header & footer.
-3.) Fix layouts for the Login & Register screens.
-4.) Apply brand variables to Login & Register screens.
+[x] 1.) Define brand variables
+[x] 2.) Apply brand variables to the app header & footer.
+[x] 3.) Fix layouts for the Login & Register screens.
+[x] 4.) Apply brand variables to Login & Register screens.
 
 
 ### Figure out how to organize the code

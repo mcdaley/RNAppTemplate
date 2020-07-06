@@ -8,12 +8,13 @@ import {
 import {
   Text,
 }                   from 'react-native-elements'
+import PropTypes    from 'prop-types'
 
 import styles       from './styles'
 
 /**
  * Renders an error alert message.
- * @param {*} param0 
+ * @props {String} message
  */
 const UIErrorAlert = ({message}) => (
   <View style={styles.errorAlertContainer}>
@@ -22,6 +23,11 @@ const UIErrorAlert = ({message}) => (
     </Text>
   </View>
 )
+
+// UIErrorAlert PropTypes
+UIErrorAlert.propTypes = {
+  message:  PropTypes.string.isRequired,
+}
 
 // Export the error alert
 export default UIErrorAlert
