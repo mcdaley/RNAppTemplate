@@ -15,6 +15,7 @@ import {
   Input,
   Text,
 }                               from 'react-native-elements'
+import styles                   from './styles'
 
 // Define login form validation schema
 const schema = yup.object().shape({
@@ -29,6 +30,10 @@ const schema = yup.object().shape({
       .required('Password is required')
 })
 
+/**
+ * 
+ * @param {*} props 
+ */
 const AuthLoginForm = (props) => {
   // Setup react-hook-form
   const { control, handleSubmit, errors } = useForm({
@@ -49,7 +54,7 @@ const AuthLoginForm = (props) => {
    */
   return (
     <>
-      <View style={{marginTop: 20, marginBottom: 20}}>
+      <View style={styles.container}>
         <Controller 
           control = {control}
           render  = { ({onChange, onBlur, value}) => (
@@ -60,16 +65,17 @@ const AuthLoginForm = (props) => {
               onChangeText  = {(value) => onChange(value)}
               leftIcon      = {
                 <Icon
-                  type  = 'ionicon'
-                  name  = 'ios-mail'
-                  style = {{size: 24, paddingRight: 5}}
+                  type            = 'ionicon'
+                  name            = 'ios-mail'
+                  iconStyle       = {styles.icon}
+                  containerStyle  = {styles.iconContainer}
                 />
               }
               keyboardType      = 'email-address'
               textContentType   = 'emailAddress'
               autoCapitalize    = 'none'
               autoCompleteType  = 'email'
-              errorStyle        = {{ color: 'red' }}
+              errorStyle        = {styles.error}
               errorMessage      = {errors.email && errors.email.message}
             />
           )}
@@ -87,9 +93,10 @@ const AuthLoginForm = (props) => {
               onChangeText  = {(value) => onChange(value)}
               leftIcon      = {
                 <Icon 
-                  type  = 'ionicon'
-                  name  = 'ios-lock'
-                  style = {{size: 24, paddingRight: 10}}
+                  type            = 'ionicon'
+                  name            = 'ios-lock'
+                  iconStyle       = {styles.icon}
+                  containerStyle  = {styles.iconContainer}
                 />
               }
               secureTextEntry   = {true}
@@ -97,7 +104,7 @@ const AuthLoginForm = (props) => {
               textContentType   = 'password'
               autoCapitalize    = 'none'
               autoCompleteType  = 'password'
-              errorStyle        = {{ color: 'red' }}
+              errorStyle        = {styles.error}
               errorMessage      = {errors.password && errors.password.message}
             />
           )}
@@ -106,9 +113,11 @@ const AuthLoginForm = (props) => {
         />
         
         <Button 
-          title   = 'Sign In'
-          style   = {{padding: 5}}
-          onPress = {handleSubmit(onSubmit)} 
+          title           = 'Sign In'
+          titleStyle      = {styles.primaryButtonTitle}
+          buttonStyle     = {styles.primaryButton}
+          containerStyle  = {styles.buttonContainer}
+          onPress         = {handleSubmit(onSubmit)} 
         />
       </View>
     </>

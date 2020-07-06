@@ -6,6 +6,7 @@ import { createStackNavigator }   from '@react-navigation/stack'
 
 import ScreensSettingsProfile     from './Profile'
 import ScreensSettingsSettings    from './Settings'
+import { ui }                     from '../../styles/ui'
 
 /**
  * Define the Settings navigation stack which contains all of the screens in the 
@@ -17,15 +18,7 @@ function SettingsScreen() {
   return (
     <SettingsStack.Navigator
       initialRouteName = 'Profile'
-      screenOptions    = {{
-        headerStyle:  {
-          backgroundColor:  '#f4511e',
-        },
-        headerTintColor:  '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
+      screenOptions    = {ui.header}
     >
       <SettingsStack.Screen 
         name      = 'Profile' 

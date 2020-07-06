@@ -7,6 +7,7 @@ import { Icon }                   from 'react-native-elements'
 
 import ScreensAppHome             from './Home'
 import ScreensAppInbox            from './Inbox'
+import { ui }                     from '../../styles/ui'
 
 /**
  * Define the App navigation stack which contains all of the screens in the 
@@ -18,15 +19,7 @@ function AppScreens() {
   return (
     <AppStack.Navigator
       initialRouteName = 'Home'
-      screenOptions    = {{
-        headerStyle:  {
-          backgroundColor:  '#f4511e',
-        },
-        headerTintColor:  '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
+      screenOptions    = {ui.header}
     >
       <AppStack.Screen 
         name      = 'Home'  

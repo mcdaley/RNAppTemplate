@@ -11,7 +11,10 @@ import {
 }                               from 'react-native-elements'
 
 import AuthLoginForm            from '../../components/auth/LoginForm'
+import UILogo                   from '../../components/ui/Logo'
+import UIErrorAlert             from '../../components/ui/ErrorAlert'
 import { AuthContext }          from '../context/AuthContext'
+import styles                   from './styles'
 
 
 /**
@@ -41,20 +44,8 @@ const ScreensAuthLogin = ({navigation}) => {
    * @param {String} password
    */
   const handleSubmit = (email, password) => {
-    //* authContext.testError(errorHandler)
-    authContext.signIn(email, password, errorHandler)
-  }
-
-  /////////////////////////////////////////////////////////////////////////////
-  // TODO: 07/05/20
-  // REFACTOR INTO AN ALERT COMPONENT
-  /////////////////////////////////////////////////////////////////////////////
-  const errorAlert = () => {
-    return (
-      <Text style={{color: 'red', fontSize: 24, margin: 10}}>
-        {error.message}
-      </Text>
-    )
+    //* authContext.signIn(email, password, errorHandler)
+    setError(new Error('Enter valid email/password, Dude'))
   }
 
   /**
@@ -62,17 +53,18 @@ const ScreensAuthLogin = ({navigation}) => {
    */
   return (
     <>
-      <View>
-        <Text h2>
-          Login Screen
-        </Text>
-        {error && errorAlert()}
-        <AuthLoginForm onSubmit={handleSubmit} />
+      <View style={styles.container}>
+        <UILogo title='RNAppTemplate' />
+        <View style={styles.authFormContainer}>
+          {error && <UIErrorAlert message={error.message} />}
+          <AuthLoginForm onSubmit={handleSubmit} />
+        </View>
         <Button 
-          title   = 'Sign up for an account'
-          type    = 'clear'
-          style   = {{padding: 5}}
-          onPress = {() => navigation.navigate('Register')}
+          title           = 'Sign up for an account'
+          type            = 'clear'
+          titleStyle      = {styles.primaryLink}
+          containerStyle  = {styles.buttonContainer}
+          onPress         = {() => navigation.navigate('Register')}
         />
       </View>
     </>

@@ -29,6 +29,7 @@ import SettingsScreens                  from './src/screens/settings/Screens'
 
 import { AuthContext }                  from './src/screens/context/AuthContext'
 import authAPI                          from './src/api/authAPI'
+import { ui }                           from './src/styles/ui'
 
 // Authentication stack navigation
 const     AuthStack = createStackNavigator()
@@ -36,15 +37,7 @@ function  AuthStackScreens() {
   return (
     <AuthStack.Navigator
       initialRouteName  = 'Login'
-      screenOptions     = {{
-        headerStyle:  {
-          backgroundColor:  '#f4511e',
-        },
-        headerTintColor:  '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
+      screenOptions     = {ui.header}
     >
       <AuthStack.Screen
         name      = 'Login'
@@ -124,7 +117,6 @@ const App = () => {
   useEffect( () => {
     const isSignedIn = async () => {
       const user = await authAPI.isLoggedIn()
-      console.log(`[debug] authAPI.isLoggedIn, user= `, user)
       dispatch({type: 'RESTORE_TOKEN', payload: user})
       
     }
@@ -218,10 +210,7 @@ const App = () => {
                 )
               },
             })}
-            tabBarOptions={{
-              activeTintColor: 'tomato',
-              inactiveTintColor: 'gray',
-            }}
+            tabBarOptions={ui.tabBarOptions}
           >
             <Tab.Screen name="Home"     component={AppScreens} />
             <Tab.Screen name="Settings" component={SettingsScreens} />
