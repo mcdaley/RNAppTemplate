@@ -1,17 +1,17 @@
 //-----------------------------------------------------------------------------
 // src/screens/auth/Login.js
 //-----------------------------------------------------------------------------
-import React                    from 'react'
+import React                from 'react'
 import {
   View,
-}                               from 'react-native'
+}                           from 'react-native'
 
-import { AuthContext }          from '../context/AuthContext'
-import AuthLoginForm            from '../../components/auth/LoginForm'
-import UILogo                   from '../../components/ui/Logo'
-import UIErrorAlert             from '../../components/ui/ErrorAlert'
-import UIButtonLink             from '../../components/ui/ButtonLink'
-import styles                   from './styles'
+import { AuthContext }      from '../context/AuthContext'
+import AuthLoginForm        from '../../components/auth/LoginForm'
+import AuthFormLink         from '../../components/auth/FormLink'
+import UILogo               from '../../components/ui/Logo'
+import UIErrorAlert         from '../../components/ui/ErrorAlert'
+import styles               from './styles'
 
 
 /**
@@ -51,15 +51,22 @@ const ScreensAuthLogin = ({navigation}) => {
   return (
     <>
       <View style={styles.container}>
+        {/* App Logo */}
         <UILogo title='RNAppTemplate' />
+
+        {/* SignIn Form */}
         <View style={styles.authFormContainer}>
           {error && <UIErrorAlert message={error.message} />}
           <AuthLoginForm onSubmit={handleSubmit} />
         </View>
-        <UIButtonLink 
-          title   = 'Sign up for an account'
-          onPress = {() => navigation.navigate('Register')}
-        />        
+
+        {/* Link to SignUp */}
+        <AuthFormLink 
+          message     = 'Need an account?'
+          title       = 'Sign Up'
+          screen      = 'Register'
+          navigation  = {navigation}
+        />
       </View>
     </>
   )

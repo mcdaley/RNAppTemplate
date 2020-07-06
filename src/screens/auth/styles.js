@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   authFormContainer: {
     flexDirection:      'column',
-    flexBasis:          '50%',
+    flexBasis:          '60%',
     justifyContent:     'flex-end',
   },
   primaryLink: {

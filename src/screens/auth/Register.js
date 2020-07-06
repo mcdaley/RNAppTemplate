@@ -5,15 +5,13 @@ import React                    from 'react'
 import {
   View,
 }                               from 'react-native'
-import {
-  Button,
-  Input,
-  Icon,
-  Text,
-}                               from 'react-native-elements'
 
-import AuthSignUpForm           from '../../components/auth/SignUpForm'
 import { AuthContext }          from '../context/AuthContext'
+import AuthSignUpForm           from '../../components/auth/SignUpForm'
+import AuthFormLink             from '../../components/auth/FormLink'
+import UILogo                   from '../../components/ui/Logo'
+import UIErrorAlert             from '../../components/ui/ErrorAlert'
+import styles                   from './styles'
 
 
 /**
@@ -43,37 +41,27 @@ const ScreensAuthRegister = ({navigation}) => {
     authContext.signUp(email, password, errorHandler)
   }
 
-  /////////////////////////////////////////////////////////////////////////////
-  // TODO: 07/05/20
-  // REFACTOR INTO AN ALERT COMPONENT
-  /////////////////////////////////////////////////////////////////////////////
-  const errorAlert = () => {
-    return (
-      <Text style={{color: 'red', fontSize: 24, margin: 10}}>
-        {error.message}
-      </Text>
-    )
-  }
-
   /**
    * Render the account sign up screen.
    */
   return (
     <>
-      <View>
-        <Text h2>
-          Register Screen
-        </Text>
-
-        {error && errorAlert()}
-        <AuthSignUpForm onSubmit={handleSubmit} />
-
-        {/* Link back to sign-in */}
-        <Button 
-          title   = 'Sign into your account'
-          type    = 'clear'
-          style   = {{padding: 10}}
-          onPress = {() => navigation.navigate('Login')}
+      <View style={styles.container}>
+        {/* App Logo */}
+        <UILogo title='RNAppTemplate' />
+        
+        {/* SignUp Form */}
+        <View style={styles.authFormContainer}>
+          {error && <UIErrorAlert message={error.message} />}
+          <AuthSignUpForm onSubmit={handleSubmit} />
+        </View>
+        
+        {/* Link to sign-in */}
+        <AuthFormLink 
+          message     = 'Already have an account?'
+          title       = 'Sign In'
+          screen      = 'Login'
+          navigation  = {navigation}
         />
       </View>
     </>

@@ -26,6 +26,16 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     padding:          10,  
+  },
+  signInContainer: {
+    flexDirection:      'row',
+    alignItems:         'center',
+    marginLeft:         10,      
+  },
+  signInLabel: {
+    fontSize:           20,
+    color:              '#555555',
+    justifyContent:     'center'
   }
 })
 

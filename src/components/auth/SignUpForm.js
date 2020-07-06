@@ -15,6 +15,7 @@ import {
   Icon,
   Text,
 }                               from 'react-native-elements'
+import styles                   from './styles'
 
 // Define sign-up form validation schema
 const schema = yup.object().shape({
@@ -70,16 +71,17 @@ const AuthSignUpForm = (props) => {
               onChangeText  = {(value) => onChange(value)}
               leftIcon      = {
                 <Icon
-                  type  = 'ionicon'
-                  name  = 'ios-mail'
-                  style = {{size: 24, paddingRight: 5}}
+                  type            = 'ionicon'
+                  name            = 'ios-mail'
+                  iconStyle       = {styles.icon}
+                  containerStyle  = {styles.iconContainer}
                 />
               }
               keyboardType      = 'email-address'
               textContentType   = 'emailAddress'
               autoCapitalize    = 'none'
               autoCompleteType  = 'email'
-              errorStyle        = {{ color: 'red' }}
+              errorStyle        = {styles.errorMessage}
               errorMessage      = {errors.email && errors.email.message}
             />
           )}
@@ -98,9 +100,10 @@ const AuthSignUpForm = (props) => {
               onChangeText  = {(value) => onChange(value)}
               leftIcon      = {
                 <Icon 
-                  type  = 'ionicon'
-                  name  = 'ios-lock'
-                  style = {{size: 24, paddingRight: 10}}
+                  type            = 'ionicon'
+                  name            = 'ios-lock'
+                  iconStyle       = {styles.icon}
+                  containerStyle  = {styles.iconContainer}
                 />
               }
               secureTextEntry   = {true}
@@ -108,7 +111,7 @@ const AuthSignUpForm = (props) => {
               textContentType   = 'password'
               autoCapitalize    = 'none'
               autoCompleteType  = 'password'
-              errorStyle        = {{ color: 'red' }}
+              errorStyle        = {styles.errorMessage}
               errorMessage      = {errors.password && errors.password.message}
             />
           )}
@@ -127,9 +130,10 @@ const AuthSignUpForm = (props) => {
               onChangeText  = {(value) => onChange(value)}
               leftIcon      = {
                 <Icon 
-                  type  = 'ionicon'
-                  name  = 'ios-lock'
-                  style = {{size: 24, paddingRight: 10}}
+                  type            = 'ionicon'
+                  name            = 'ios-lock'
+                  iconStyle       = {styles.icon}
+                  containerStyle  = {styles.iconContainer}
                 />
               }
               secureTextEntry   = {true}
@@ -137,7 +141,7 @@ const AuthSignUpForm = (props) => {
               textContentType   = 'password'
               autoCapitalize    = 'none'
               autoCompleteType  = 'password'
-              errorStyle        = {{ color: 'red' }}
+              errorStyle        = {styles.errorMessage}
               errorMessage      = {errors.confirmPassword && errors.confirmPassword.message}
             />
           )}
@@ -145,9 +149,11 @@ const AuthSignUpForm = (props) => {
 
         {/* Submit button */}
         <Button 
-          title   = 'Sign Up'
-          style   = {{padding: 10}}
-          onPress = {handleSubmit(onSubmit)} 
+          title           = 'Sign Up'
+          titleStyle      = {styles.primaryButtonTitle}
+          buttonStyle     = {styles.primaryButton}
+          containerStyle  = {styles.buttonContainer}
+          onPress         = {handleSubmit(onSubmit)} 
         />
       </View>
     </>
