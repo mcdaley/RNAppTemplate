@@ -10,10 +10,13 @@ const styles = StyleSheet.create({
     marginBottom:     20
   },
   icon: {
-    ...ui.icon,
+    ...ui.form.icon,
   },
   iconContainer: {
-    ...ui.leftInputIcon,
+    ...ui.form.iconContainer,
+  },
+  errorMessage: {
+    ...ui.form.errorMessage,
   },
   primaryButton: {
     ...ui.button.primary,
@@ -23,9 +26,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     padding:          10,  
-  },
-  error: {
-    ...ui.errorStyle,
   }
 })
 

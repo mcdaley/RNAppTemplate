@@ -48,12 +48,17 @@ export const ui = {
     activeTintColor:    activeTintColor,
     inactiveTintColor:  inactiveTintColor,
   },
-  icon: {
-    color:              color_1,
-    fontSize:           24,
-  },
-  leftInputIcon: {
-    paddingRight:       10,
+  form: {
+    icon: {
+      color:              color_1,
+      fontSize:           24,
+    },
+    iconContainer: {
+      paddingRight:       10,
+    },
+    errorMessage: {
+      color:              error,
+    },
   },
   button: {
     primary: {
@@ -64,24 +69,37 @@ export const ui = {
       fontWeight:       'bold',
     }
   },
-  errorStyle: {
-    color:              error,
-  },
   link: {
     primary: {
       color:            color_1,
       fontWeight:       'bold',
+      fontSize:         20,
+    },
+    container: {
+      padding:          10,
     }
   },
   alert: {
+    container: {
+      flexDirection:    'column',
+      justifyContent:   'center',
+      alignItems:       'center',
+      borderWidth:      1,
+      borderRadius:     5,
+      marginTop:        10,
+      marginBottom:     10,
+      padding:          10,
+    },
+    message: {
+      fontSize:         18,
+    },
     error: {
-      title: {
+      message: {
         color:          error,
-        fontSize:       24,
       },
       container: {
-        marginTop:      5,
-        marginBottom:   5,
+        borderColor:      '#FA0000',
+        backgroundColor:  'pink',
       },
     },
   }

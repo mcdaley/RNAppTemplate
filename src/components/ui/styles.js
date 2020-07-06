@@ -24,22 +24,19 @@ const styles = StyleSheet.create({
     fontWeight:         'bold',
   },
   errorAlertContainer: {
-    flexDirection:      'column',
-    justifyContent:     'center',
-    alignItems:         'center',
-    borderColor:        '#FA0000',
-    backgroundColor:    'pink',
-    borderWidth:        2,
-    borderRadius:       5,
-    marginTop:          10,
-    marginBottom:       10,
-    padding:            10,
+    ...ui.alert.container,
+    ...ui.alert.error.container,
   },
   errorAlertMessage: {
-    fontSize:           20,
-    color:              '#FA0000',
-    fontWeight:         'bold',
+    ...ui.alert.message,
+    ...ui.alert.error.message,
   },
+  buttonLink: {
+    ...ui.link.primary,
+  },
+  buttonContainer: {
+    ...ui.link.container,
+  }
 })
 
 // Export UI component styles

@@ -11,6 +11,10 @@ import {
 
 import styles       from './styles'
 
+/**
+ * Renders an error alert message.
+ * @param {*} param0 
+ */
 const UIErrorAlert = ({message}) => (
   <View style={styles.errorAlertContainer}>
     <Text style={styles.errorAlertMessage}>

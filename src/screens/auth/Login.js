@@ -5,15 +5,12 @@ import React                    from 'react'
 import {
   View,
 }                               from 'react-native'
-import {
-  Button,
-  Text,
-}                               from 'react-native-elements'
 
+import { AuthContext }          from '../context/AuthContext'
 import AuthLoginForm            from '../../components/auth/LoginForm'
 import UILogo                   from '../../components/ui/Logo'
 import UIErrorAlert             from '../../components/ui/ErrorAlert'
-import { AuthContext }          from '../context/AuthContext'
+import UIButtonLink             from '../../components/ui/ButtonLink'
 import styles                   from './styles'
 
 
@@ -44,8 +41,8 @@ const ScreensAuthLogin = ({navigation}) => {
    * @param {String} password
    */
   const handleSubmit = (email, password) => {
-    //* authContext.signIn(email, password, errorHandler)
-    setError(new Error('Enter valid email/password, Dude'))
+    authContext.signIn(email, password, errorHandler)
+    //* setError(new Error('Enter valid email/password, Dude'))
   }
 
   /**
@@ -59,13 +56,10 @@ const ScreensAuthLogin = ({navigation}) => {
           {error && <UIErrorAlert message={error.message} />}
           <AuthLoginForm onSubmit={handleSubmit} />
         </View>
-        <Button 
-          title           = 'Sign up for an account'
-          type            = 'clear'
-          titleStyle      = {styles.primaryLink}
-          containerStyle  = {styles.buttonContainer}
-          onPress         = {() => navigation.navigate('Register')}
-        />
+        <UIButtonLink 
+          title   = 'Sign up for an account'
+          onPress = {() => navigation.navigate('Register')}
+        />        
       </View>
     </>
   )

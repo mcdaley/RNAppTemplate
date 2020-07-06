@@ -13,7 +13,6 @@ import {
   Button,
   Icon,
   Input,
-  Text,
 }                               from 'react-native-elements'
 import styles                   from './styles'
 
@@ -75,7 +74,7 @@ const AuthLoginForm = (props) => {
               textContentType   = 'emailAddress'
               autoCapitalize    = 'none'
               autoCompleteType  = 'email'
-              errorStyle        = {styles.error}
+              errorStyle        = {styles.errorMessage}
               errorMessage      = {errors.email && errors.email.message}
             />
           )}
